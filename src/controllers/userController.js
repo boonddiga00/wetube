@@ -132,5 +132,5 @@ export const getEdit = (req, res) => {
 export const postEdit = (req, res) => {
 	res.end
 };
-export const remove = (req, res) => res.send("remove User");
+
 export const see = (req, res) => res.send("see User");
