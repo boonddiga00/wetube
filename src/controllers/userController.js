@@ -129,8 +129,31 @@ export const logout = (req, res) => {
 export const getEdit = (req, res) => {
 	res.render("edit-profile", { pageTitle: "Edit Profile" });
 };
-export const postEdit = (req, res) => {
-	res.end
+export const postEdit = async (req, res) => {
+	const {
+		session : { user },
+		body : { email, username, name, location }
+	} = req
+	if (email !== user.email) {
+		const exists = await User.exists({ email });
+		if(exists){
+			return res.render("edit-profile", { errorMessage: "This email/username is already taken." });
+		}
+	}
+	if (username !== user.username) {
+		const exists = await User.exists({ username });
+		if(exists) {
+			return res.render("edit-profile", { errorMessage: "This email/username is already taken." });
+		}
+	}
+	const updatedUser = await User.findByIdAndUpdate(user._id, {
+		email, 
+		username, 
+		name, 
+		location,
+	}, { new: true });
+	req.session.user = updatedUser;
+	return res.redirect("/users/edit");
 };
 
 export const see = (req, res) => res.send("see User");
