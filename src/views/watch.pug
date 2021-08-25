@@ -9,7 +9,8 @@ block content
 				li=hashtag
 		small=video.createdAt
 		br
-		small This video is created by #{owner.name}
+		small This video is created by   
+			a(href=`/users/${video.owner._id}`)=video.owner.name
 	if String(video.owner) === String(loggedInUser._id)
 		a(href=`${video.id}/edit`) Edit Video &rarr;
 		br
