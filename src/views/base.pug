@@ -16,9 +16,11 @@ html(lang="en")
 						li
 							a(href="/videos/upload") Upload Video
 						li
-							a(href="/users/logout") Log Out
+							a(href=`/users/${loggedInUser._id}`) My Profile
 						li
 							a(href="/users/edit") Edit Profile
+						li
+							a(href="/users/logout") Log Out
 					else
 						li
 							a(href="/login") Log In

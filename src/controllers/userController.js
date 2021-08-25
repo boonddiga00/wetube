@@ -183,4 +183,11 @@ export const postPasswordChange = async (req, res) => {
 	return res.redirect("/users/logout");
 }
 
-export const see = (req, res) => res.send("see User");
+export const profile = async (req, res) => {
+	const { id } = req.params;  // req.session이 아닌 req.params에서 가져오는 이유 : 로그인 한 유저 뿐만 아니라 다른 유저들에게도 보여지도록 만들기 위해
+	const user = await User.findById(id);
+	if(!user) {
+		res.status("404").render("404", { pageTitle: "User Not Found" } );
+	}
+	res.render("user/profile", { pageTitle: user.name })
+}
