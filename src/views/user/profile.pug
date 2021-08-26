@@ -3,7 +3,7 @@ include ../mixins/video
 
 block content
 	h3 Created Videos
-	each item in videos
+	each item in user.videos
 		+video(item)
 	else
 		li Sorry, We can't find anything.

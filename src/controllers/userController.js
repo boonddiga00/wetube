@@ -1,5 +1,4 @@
 import User from "../models/User"
-import Video from "../models/Video"
 import bcrypt from "bcrypt";
 import fetch from "node-fetch";
 
@@ -186,10 +185,9 @@ export const postPasswordChange = async (req, res) => {
 
 export const profile = async (req, res) => {
 	const { id } = req.params;  // req.session이 아닌 req.params에서 가져오는 이유 : 로그인 한 유저 뿐만 아니라 다른 유저들에게도 보여지도록 만들기 위해
-	const user = await User.findById(id);
-	const videos = await Video.find({ owner: id });
+	const user = await User.findById(id).populate("videos");
 	if(!user) {
 		res.status("404").render("404", { pageTitle: "User Not Found" } );
 	}
-	res.render("user/profile", { pageTitle: user.name, videos });
+	res.render("user/profile", { pageTitle: user.name, user });
 }
