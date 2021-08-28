@@ -4,8 +4,8 @@
   "description": "Making WETUBE CLONE!",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec babel-node src/init.js",
-    "assets": "webpack --config webpack.config.js"
+    "dev:server": "nodemon",
+    "dev:assets": "webpack"
   },
   "author": "",
   "license": "ISC",
@@ -27,6 +27,10 @@
     "@babel/node": "^7.14.9",
     "@babel/preset-env": "^7.15.0",
     "babel-loader": "^8.2.2",
+    "css-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^2.2.0",
+    "sass": "^1.38.2",
+    "sass-loader": "^12.1.0",
     "webpack": "^5.51.1",
     "webpack-cli": "^4.8.0"
   }
