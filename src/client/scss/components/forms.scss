@@ -7,7 +7,7 @@ form {
 	border: 1px solid rgba($color: #fff, $alpha: 0.1);
 }
 
-input:not(input[type="range"]) {
+input /*:not(input[type="range"]) */ {
 	all: unset;
 	padding: 15px 20px;
 	border-radius: 5px;
@@ -18,8 +18,15 @@ input:not(input[type="range"]) {
 	color: white;
 	width: 90%;
 	&::placeholder {
-		color: rgba(255, 255, 255, 0.7);
+	color: rgba(255, 255, 255, 0.7);
 	}
+}
+
+input[type="range"] {
+	all: unset;
+	border-radius: 10px;
+	background-color: #fff;
+	height: 5px;
 }
 
 input[type="submit"],
