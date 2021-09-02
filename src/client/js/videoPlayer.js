@@ -7,7 +7,10 @@ const totalTime = document.getElementById("totalTime");
 const timeline = document.getElementById("timeline");
 const fullScreenBtn = document.getElementById("fullScreen");
 const videoContainer = document.getElementById("videoContainer");
+const videoControls = document.getElementById("videoControls");
 
+let controlsTimeout = null;
+let mouseMovementTimeout = null;
 let volumeValue = 0.5;
 video.volume = volumeValue;
 
@@ -76,6 +79,25 @@ const handlefullScreenBtnClick = () => {
 	
 }
 
+const removeShowingClass = () => videoControls.classList.remove("showing");
+
+const handleMouseMove = () => {
+	if(controlsTimeout) {
+		clearTimeout(controlsTimeout);
+		controlsTimeout = null; //없어도 됨
+	}
+	if(mouseMovementTimeout) {
+		clearTimeout(mouseMovementTimeout);
+		mouseMovementTimeout = null;
+	}
+	videoControls.classList.add("showing");
+	mouseMovementTimeout = setTimeout(removeShowingClass, 3000);
+}
+
+const handleMouseLeave = () => {
+	controlsTimeout = setTimeout(removeShowingClass, 3000);
+}
+
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolume);
@@ -84,6 +106,8 @@ video.addEventListener("loadedmetadata", handleLoadedMetaData);
 video.addEventListener("timeupdate", handleTimeUpadte);
 timeline.addEventListener("input", handleTimelineRange);
 fullScreenBtn.addEventListener("click", handlefullScreenBtnClick);
+video.addEventListener("mousemove", handleMouseMove);
+video.addEventListener("mouseleave", handleMouseLeave);
 
 if (video.readyState == 4) {
 	handleLoadedMetaData();
