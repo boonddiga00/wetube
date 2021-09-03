@@ -1,18 +1,23 @@
 extends base
 
 block content
-	div#videoContainer
-		video(src=`/${video.fileUrl}`, controls)
-		div#videoControls
-			button#play Play
-			button#mute Mute
-			input(type="range", step="0.1" min="0", max="1")#volume
+	div#videoContainer.videoContainer
+		video(src=`/${video.fileUrl}`)
+		div#videoControls.videoControls
+			div.videoControls__playBtn
+				span#play
+					i.fas.fa-play
 			div
 				span#currentTime 00:00
 				span  / 
 				span#totalTime 00:00
-			input(type="range", step="1", min="0", value="0")#timeline
-			button#fullScreen Enter Fullscreen
+			input(type="range", step="1", min="0", value="0")#timeline.videoControls__timeline
+			div.videoControls__volume-mute
+				input(type="range", step="0.1" min="0", max="1")#volume
+				span#mute
+					i.fas.fa-volume-up
+			span#fullScreen.videoControls__fullScreen
+				i.fas.fa-expand
 	// div
 		p=video.description
 		ul
