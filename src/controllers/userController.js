@@ -113,10 +113,8 @@ export const finishGithubLogin = async (req, res) => {
 				avatarUrl: userData.avatar_url,
 			});
 		}
-		console.log(user)
 		req.session.loggedIn = true;
 		req.session.user = user;
-		console.log(req.session);
 		return res.redirect("/");
 	} else {
 		return res.redirect("/login");
@@ -155,6 +153,7 @@ export const postEdit = async (req, res) => {
 		location,
 	}, { new: true });
 	req.session.user = updatedUser;
+	req.flash("info", "Editing Complete")
 	return res.redirect("/users/edit");
 };
 
