@@ -18,18 +18,11 @@ block content
 					i.fas.fa-volume-up
 			span#fullScreen.videoControls__fullScreen
 				i.fas.fa-expand
-	// div
-		p=video.description
-		ul
-			each hashtag in video.hashtags
-				li=hashtag
-		small=video.createdAt
-		br
-		small This video is created by   
-			a(href=`/users/${video.owner._id}`)=video.owner.name
-		if String(video.owner._id) === String(loggedInUser._id)
-			a(href=`${video.id}/edit`) Edit Video &rarr;
-			br
-			a(href=`${video.id}/delete`) Delete Video &rarr;
+	if loggedIn
+		div.video__comment
+			form.video__comment-form#commentForm
+				textarea(cols=40, rows=20, placeholder="Write awesome Comment")
+				button Submit
 block scripts
 	script(src="/static/js/videoPlayer.js")
+	script(src="/static/js/commentSection.js")
