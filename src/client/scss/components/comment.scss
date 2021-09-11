@@ -1,0 +1,59 @@
+.video__comment-add {
+	.video__comment-form {
+		max-width: inherit;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		textarea {
+			all: unset;
+			width: 90%;
+			background-color: $bg;
+			padding: 5px 10px;
+		}
+		button {
+			all: unset;
+			background-color: $red;
+			color: white;
+			padding: 10px;
+			border-radius: 10px;
+			&:hover {
+				transform: scale(1.1);
+			}
+			&:active {
+				transform: scale(1);
+			}
+		}
+	}
+}
+
+.video__comments {
+	margin-top: 15px;
+	.video__comment-box {
+		position: relative;
+		display: flex;
+		align-items: center;
+		margin-bottom: 15px;
+		.video__comment {
+			display:flex;
+			flex-direction: column;
+			span {
+				font-size: 14px;
+				padding: 4px;
+				&:first-child {
+					font-weight: 700;
+				}
+			}
+		}
+		img {
+			margin-right: 12px;
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+		}
+		.video__comment-delete {
+			position: absolute;
+			right: 10px;
+			cursor: pointer;
+		}
+	}
+}

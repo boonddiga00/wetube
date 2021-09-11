@@ -150,7 +150,7 @@ timeline.addEventListener("input", handleTimelineRange);
 fullScreenBtn.addEventListener("click", handlefullScreenBtnClick);
 videoContainer.addEventListener("mousemove", handleMouseMove);
 videoContainer.addEventListener("mouseleave", handleMouseLeave);
-window.addEventListener("keydown", handleKeyDown);
+videoContainer.addEventListener("keydown", handleKeyDown);
 
 if (video.readyState == 4) {
 	handleLoadedMetaData();
