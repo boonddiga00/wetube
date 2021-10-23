@@ -36,7 +36,10 @@ block content
 		ul
 			each comment in video.comments.reverse()
 				li.video__comment-box(data-id=comment._id)
-					img(src=comment.owner.avatarUrl)
+					if(comment.owner.avatarUrl === "")
+						span 😀
+					else
+						img(src=comment.owner.avatarUrl)
 					div.video__comment
 						span #{comment.owner.name}
 						span #{comment.text}
